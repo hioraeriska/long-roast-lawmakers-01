@@ -28,4 +28,10 @@ const sentences = (back.match(/\./g) ?? []).length;
 if (sentences !== 1) {
   throw new Error(`entry must be exactly one sentence, found ${sentences} periods`);
 }
+if (!back.endsWith(".")) {
+  throw new Error("entry must end with its single period");
+}
+if (back.includes("\n") || back.includes("\r")) {
+  throw new Error("entry must be a single line with no line breaks");
+}
 console.log(`wrote ${back.length} chars to ${target}`);
